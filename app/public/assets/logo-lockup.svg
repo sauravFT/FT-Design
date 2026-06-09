@@ -1,0 +1,8 @@
+<svg width="172" height="48" viewBox="0 0 172 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="4" width="40" height="40" rx="10" fill="#352eff"></rect>
+  <rect x="8" y="12" width="9" height="9" rx="2.5" fill="#ffffff"></rect>
+  <rect x="23" y="12" width="9" height="9" rx="2.5" fill="#ffffff"></rect>
+  <rect x="8" y="27" width="9" height="9" rx="2.5" fill="#ffffff"></rect>
+  <rect x="23" y="27" width="9" height="9" rx="2.5" fill="#ffffff" opacity="0.4"></rect>
+  <text x="54" y="33" font-family="&#39;Plus Jakarta Sans&#39;, sans-serif" font-size="26" font-weight="800" letter-spacing="-0.03em" fill="#171717">MaV</text>
+</svg>
