@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — Web App" name="Web dashboard — UI kit" subtitle="White canvas, light-blue-tinted sidebar; logo, sub-nav, role pills, charts" viewport="1200x660" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fyscal Web — Dashboard UI Kit</title>
+<meta name="ext-resource-dependency" content="../../assets/fyscal-logo.svg" data-resource-id="fyscalLogo" />
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-body); background: #fff; color: var(--fg); -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 32px 16px 56px; gap: 18px; }
+  .kit-head { text-align: center; max-width: 460px; }
+  .kit-head h1 { font-size: 19px; font-weight: 800; letter-spacing: -.02em; }
+  .kit-head p { font-size: 13px; color: var(--fg-muted); margin-top: 4px; line-height: 1.5; }
+  .app-grid { display: grid; grid-template-columns: 232px 1fr; min-height: 660px; }
+  .main-col { overflow-y: auto; max-height: 660px; }
+</style>
+</head>
+<template id="__bundler_thumbnail" data-bg-color="#f0f0f2">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#f0f0f2"/>
+    <rect x="120" y="140" width="240" height="520" fill="#ffffff" stroke="#e6e6ea" stroke-width="2"/>
+    <rect x="152" y="180" width="34" height="34" rx="4" fill="#352eff"/>
+    <rect x="152" y="260" width="176" height="30" fill="#eef0ff"/>
+    <rect x="156" y="268" width="4" height="14" fill="#352eff"/>
+    <rect x="152" y="304" width="150" height="18" fill="#ececf0"/>
+    <rect x="152" y="336" width="150" height="18" fill="#ececf0"/>
+    <g>
+      <rect x="400" y="180" width="170" height="110" fill="#ffffff" stroke="#e6e6ea" stroke-width="2"/>
+      <rect x="590" y="180" width="170" height="110" fill="#ffffff" stroke="#e6e6ea" stroke-width="2"/>
+      <rect x="780" y="180" width="170" height="110" fill="#ffffff" stroke="#e6e6ea" stroke-width="2"/>
+      <rect x="970" y="180" width="110" height="110" fill="#ffffff" stroke="#e6e6ea" stroke-width="2"/>
+    </g>
+    <g fill="#352eff">
+      <rect x="420" y="560" width="30" height="90"/>
+      <rect x="470" y="520" width="30" height="130"/>
+      <rect x="520" y="540" width="30" height="110"/>
+      <rect x="570" y="500" width="30" height="150"/>
+    </g>
+    <rect x="400" y="330" width="680" height="2" fill="#e6e6ea"/>
+  </svg>
+</template>
+<body>
+  <div class="kit-head">
+    <h1>Fyscal — Analytics Dashboard</h1>
+    <p>Interactive product-analytics console built in the Fyscal brand system. Switch sections in the sidebar.</p>
+  </div>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="Icons.jsx"></script>
+  <script type="text/babel" src="Shell.jsx"></script>
+  <script type="text/babel" src="Widgets.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+    const VIEWS = { dashboard: Dashboard, analytics: Dashboard, revenue: Dashboard, users: Dashboard, settings: Settings, help: Settings };
+    const URLS = { dashboard: 'app.fyscaltech.com/dashboard', analytics: 'app.fyscaltech.com/analytics', revenue: 'app.fyscaltech.com/revenue', users: 'app.fyscaltech.com/users', settings: 'app.fyscaltech.com/settings', help: 'app.fyscaltech.com/help' };
+
+    function App() {
+      const [nav, setNav] = useState('dashboard');
+      const View = VIEWS[nav] || Dashboard;
+      return (
+        <BrowserChrome url={URLS[nav] || 'app.fyscaltech.com'}>
+          <div className="app-grid">
+            <Sidebar active={nav} onNav={setNav} />
+            <div className="main-col"><View /></div>
+          </div>
+        </BrowserChrome>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

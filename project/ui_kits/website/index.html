@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — Website" name="Website — UI kit" subtitle="Animated hero + full marketing site, properly adapted light & dark" viewport="1200x720" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fyscal — Money that moves as fast as you do</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="responsive.css">
+<link rel="stylesheet" href="hero.css">
+<style>
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-body); background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  ::selection { background: var(--primary); color: #fff; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script src="fluted-glass.js?v=6"></script>
+  <script type="text/babel" src="Icons.jsx"></script>
+  <script type="text/babel" src="Nav.jsx"></script>
+  <script type="text/babel" src="HeroBeam.jsx"></script>
+  <script type="text/babel" src="Sections.jsx"></script>
+  <script type="text/babel">
+    function Site() {
+      const cta = () => {
+        const el = document.getElementById('final-cta');
+        if (el) window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
+      };
+      return (
+        <>
+          <HeroBeam />
+          <LogoStrip />
+          <Features />
+          <ProductSplit />
+          <Stats />
+          <Pricing onCta={cta} />
+          <Testimonial />
+          <div id="final-cta"><FinalCTA onCta={cta} /></div>
+          <Footer />
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Site />);
+  </script>
+  <script src="theme-toggle.js"></script>
+</body>
+</html>

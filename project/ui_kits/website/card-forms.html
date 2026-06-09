@@ -1,0 +1,51 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — Website" name="Components — Forms" subtitle="All inputs + signup, lead capture, checkout, settings, onboarding" viewport="1100x760" --><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fyscal — Forms</title>
+<link rel="stylesheet" href="../../colors_and_type.css"><style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--surface-soft);color:var(--fg);-webkit-font-smoothing:antialiased}
+@keyframes ftspin{to{transform:rotate(360deg)}}@keyframes ftshimmer{to{background-position:-200% 0}}
+.wrap{max-width:1100px;margin:0 auto;padding:18px 20px 40px}
+.grp{margin-top:30px}.grp:first-child{margin-top:6px}
+.grp-h{display:flex;align-items:baseline;gap:10px;padding-bottom:12px;margin-bottom:18px;border-bottom:2px solid var(--mono-900)}
+.grp-h h2{font-size:19px;font-weight:700;letter-spacing:-.02em}.grp-h span{font-size:12px;color:var(--mono-400);font-family:var(--font-mono)}
+.specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.spec{background:var(--surface);border:1px solid var(--border);display:flex;flex-direction:column}.spec.wide{grid-column:1/-1}
+.spec .cap{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mono-400);padding:11px 16px;border-bottom:1px solid var(--surface-soft)}
+.spec .body{padding:18px 16px;display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center}.spec .body.row{flex-direction:row;flex-wrap:wrap;align-items:center}
+.phone{width:300px;margin:0 auto;border:10px solid #1c1c1e;border-radius:38px;overflow:hidden;background:#fff;position:relative;height:560px}.phone .scr{position:absolute;inset:0;overflow-y:auto}</style></head>
+<body>
+  <div class="wrap" id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="Icons.jsx"></script>
+<script type="text/babel" src="Library.jsx"></script>
+<script type="text/babel" src="LibrarySections.jsx"></script>
+<script type="text/babel" src="LibraryExtras.jsx"></script>
+<script type="text/babel" src="LibraryMarketing.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+    const Spec = ({ cap, wide, row, children }) => (<div className={'spec'+(wide?' wide':'')}><div className="cap">{cap}</div><div className={'body'+(row?' row':'')}>{children}</div></div>);
+    const Group = ({ title, count, children }) => (<section className="grp"><div className="grp-h"><h2>{title}</h2><span>{count}</span></div>{children}</section>);
+
+    function App(){
+      const [sheet,setSheet]=useState(false);const [modal,setModal]=useState(false);const [drawer,setDrawer]=useState(false);
+      return (<>
+<Group title="Forms" count="inputs · select · radio · checkbox · toggle · range · search"><div className="specs">
+<Spec cap="Text input"><TextInput /><TextInput label="Account number" placeholder="0123456789" error="Enter a valid 10-digit number" /></Spec>
+<Spec cap="Select"><Select /></Spec><Spec cap="Radio group"><Radios /></Spec><Spec cap="Checkboxes"><Checks /></Spec>
+<Spec cap="Toggles"><Toggle /><Toggle label="Email receipts" def={false} /></Spec><Spec cap="Range slider"><RangeSlider /></Spec><Spec cap="Search bar" wide><SearchBar /></Spec></div></Group>
+<Group title="Forms — more controls" count="textarea · OTP · phone · quantity · file · date · multi-select"><div className="specs">
+<Spec cap="Textarea"><Textarea /></Spec><Spec cap="OTP input"><OTP /></Spec><Spec cap="Phone input"><PhoneInput /></Spec>
+<Spec cap="Quantity stepper"><Quantity /></Spec><Spec cap="File upload"><FileUpload /></Spec><Spec cap="Date field"><DateField /></Spec><Spec cap="Multi-select / tags"><TagInput /></Spec></div></Group>
+<Group title="Form sections" count="signup · lead capture · checkout · settings · onboarding"><div className="specs">
+<Spec cap="Signup"><SignupForm /></Spec><Spec cap="Lead capture"><LeadCaptureForm /></Spec><Spec cap="Checkout"><CheckoutForm /></Spec>
+<Spec cap="Settings"><SettingsForm /></Spec><Spec cap="Onboarding"><OnboardingForm /></Spec></div></Group>
+        {sheet && <ActionSheet onClose={()=>setSheet(false)} />}
+        {modal && <Modal onClose={()=>setModal(false)} />}
+        {drawer && <Drawer onClose={()=>setDrawer(false)} />}
+      </>);
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+  <script src="theme-toggle.js"></script>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="OTP input" subtitle="48×48 mono slots" viewport="700x150" -->
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+.otp{display:flex;gap:8px;margin-bottom:14px}
+.slot{width:48px;height:48px;border-radius:0;border:1px solid var(--border-input);display:flex;align-items:center;justify-content:center;font:500 18px var(--font-mono);color:var(--fg);background:#fff}
+.slot.filled{border-color:var(--mono-900)}
+.slot.focus{border-color:var(--primary);box-shadow:var(--shadow-focus)}
+.cap{font-size:11px;color:var(--fg-muted)}
+.cap a{color:var(--primary);font-weight:600;text-decoration:none}
+</style>
+</head><body>
+<div class="eyebrow">OTP input · 48×48 slots, mono digits, 8px gap</div>
+<div class="otp">
+  <div class="slot filled">4</div>
+  <div class="slot filled">8</div>
+  <div class="slot filled">2</div>
+  <div class="slot focus"></div>
+  <div class="slot"></div>
+  <div class="slot"></div>
+</div>
+<div class="cap">Didn't get a code? <a href="#">Resend code</a> · 0:24</div>
+</body></html>

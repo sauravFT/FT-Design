@@ -1,0 +1,17 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Alerts" subtitle="Soft fill + accent, 3 statuses" viewport="700x230" -->
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+.al{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:0;margin-bottom:8px}
+.dot{width:18px;height:18px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
+.at{font-size:12px;font-weight:700}
+.ad{font-size:11px;opacity:.9;margin-top:1px}
+</style>
+</head><body>
+<div class="eyebrow">Alerts · soft fill + accent</div>
+<div class="al" style="background:var(--primary-soft)"><div class="dot" style="background:var(--primary)">i</div><div><div class="at" style="color:var(--primary)">Verification sent</div><div class="ad" style="color:var(--primary)">Check your phone for a 6-digit code.</div></div></div>
+<div class="al" style="background:var(--success-soft)"><div class="dot" style="background:var(--success)">✓</div><div><div class="at" style="color:var(--success)">Transfer complete</div><div class="ad" style="color:var(--success)">₦ 50,000 sent to James K.</div></div></div>
+<div class="al" style="background:var(--danger-soft)"><div class="dot" style="background:var(--danger)">!</div><div><div class="at" style="color:var(--danger)">Payment failed</div><div class="ad" style="color:var(--danger)">Insufficient balance. Top up to continue.</div></div></div>
+</body></html>

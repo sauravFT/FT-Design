@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — Website" name="Components — Containers & Mobile" subtitle="Grid, panel, modal, drawer, accordion, announcement, mobile app shell" viewport="1100x760" --><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fyscal — Containers & Mobile</title>
+<link rel="stylesheet" href="../../colors_and_type.css"><style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--surface-soft);color:var(--fg);-webkit-font-smoothing:antialiased}
+@keyframes ftspin{to{transform:rotate(360deg)}}@keyframes ftshimmer{to{background-position:-200% 0}}
+.wrap{max-width:1100px;margin:0 auto;padding:18px 20px 40px}
+.grp{margin-top:30px}.grp:first-child{margin-top:6px}
+.grp-h{display:flex;align-items:baseline;gap:10px;padding-bottom:12px;margin-bottom:18px;border-bottom:2px solid var(--mono-900)}
+.grp-h h2{font-size:19px;font-weight:700;letter-spacing:-.02em}.grp-h span{font-size:12px;color:var(--mono-400);font-family:var(--font-mono)}
+.specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.spec{background:var(--surface);border:1px solid var(--border);display:flex;flex-direction:column}.spec.wide{grid-column:1/-1}
+.spec .cap{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mono-400);padding:11px 16px;border-bottom:1px solid var(--surface-soft)}
+.spec .body{padding:18px 16px;display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center}.spec .body.row{flex-direction:row;flex-wrap:wrap;align-items:center}
+.phone{width:300px;margin:0 auto;border:10px solid #1c1c1e;border-radius:38px;overflow:hidden;background:#fff;position:relative;height:560px}.phone .scr{position:absolute;inset:0;overflow-y:auto}</style></head>
+<body>
+  <div class="wrap" id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="Icons.jsx"></script>
+<script type="text/babel" src="Library.jsx"></script>
+<script type="text/babel" src="LibrarySections.jsx"></script>
+<script type="text/babel" src="LibraryExtras.jsx"></script>
+<script type="text/babel" src="LibraryMarketing.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+    const Spec = ({ cap, wide, row, children }) => (<div className={'spec'+(wide?' wide':'')}><div className="cap">{cap}</div><div className={'body'+(row?' row':'')}>{children}</div></div>);
+    const Group = ({ title, count, children }) => (<section className="grp"><div className="grp-h"><h2>{title}</h2><span>{count}</span></div>{children}</section>);
+
+function PhoneApp(){const [open,setOpen]=useState(false);const links=['Home','Payments','Cards','Savings','Profile'];return(
+ <div style={{minHeight:'100%',background:'#fff',position:'relative'}}>
+  <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'16px 16px 12px',borderBottom:'1px solid var(--border)'}}>
+   <FyscalLogo height={16}/>
+   <button onClick={()=>setOpen(o=>!o)} style={{width:40,height:40,display:'grid',placeItems:'center',border:'1px solid var(--border-input)',background:'#fff',cursor:'pointer'}}>{open?<SIcons.x size={20} stroke="var(--fg)"/>:<SIcons.menu size={20} stroke="var(--fg)"/>}</button>
+  </div>
+  {open&&<div style={{borderBottom:'1px solid var(--border)'}}>{links.map((l,i)=><div key={l} style={{padding:'15px 16px',fontSize:16,fontWeight:i===0?600:500,color:i===0?'var(--primary)':'var(--fg)',borderTop:i?'1px solid var(--surface-soft)':'none'}}>{l}</div>)}</div>}
+  <div style={{padding:'22px 16px',display:'flex',flexDirection:'column',gap:18}}>
+   <div><div style={{fontSize:12,fontWeight:600,letterSpacing:'.06em',textTransform:'uppercase',color:'var(--mono-400)'}}>Balance</div><div style={{font:'700 30px var(--font-mono)',letterSpacing:'-.02em',marginTop:4}}>₦284,500</div></div>
+   <UBtn full size="lg"><SIcons.swap size={18} stroke="#fff"/> Send money</UBtn>
+   <UBtn full size="lg" variant="ghost"><SIcons.card size={18}/> Pay a bill</UBtn>
+   <div style={{padding:'4px 0'}}><ListItem title="Salary — GTBank" meta="Today" amount="+₦350,000" credit /><ListItem title="James K." meta="Yesterday" amount="−₦20,000" /></div>
+  </div>
+ </div>);}
+    // push-style left drawer: opening it shifts the whole page content to the right
+    function SideDrawer({ onClose }){
+      const items=['Dashboard','Payments','Cards','Savings','Settings'];
+      return (
+        <div style={{position:'fixed',top:0,left:0,bottom:0,width:260,background:'#fff',borderRight:'1px solid var(--border)',boxShadow:'var(--shadow-lg)',zIndex:40,padding:'20px 0'}}>
+          <div style={{padding:'0 20px 16px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+            <FyscalLogo height={18}/>
+            <button onClick={onClose} style={{background:'none',border:'none',cursor:'pointer'}}><SIcons.x size={18} stroke="var(--mono-500)"/></button>
+          </div>
+          {items.map((it,i)=><div key={it} style={{padding:'13px 20px',fontSize:14,fontWeight:i===0?600:500,color:i===0?'var(--primary)':'var(--fg)',background:i===0?'var(--primary-soft)':'transparent'}}>{it}</div>)}
+        </div>
+      );
+    }
+    function App(){
+      const [sheet,setSheet]=useState(false);const [modal,setModal]=useState(false);const [drawer,setDrawer]=useState(false);
+      const DW=260;
+      return (
+       <div style={{marginLeft:drawer?DW:0,transition:'margin-left .3s cubic-bezier(.2,.7,.2,1)'}}>
+        <div style={{position:'sticky',top:0,zIndex:5,background:'var(--surface-soft)',padding:'8px 0 10px',marginBottom:4,display:'flex',alignItems:'center',gap:10}}>
+          <UBtn size="sm" variant={drawer?'primary':'ghost'} onClick={()=>setDrawer(d=>!d)}><SIcons.menu size={15} stroke={drawer?'#fff':'var(--fg)'}/> {drawer?'Close':'Open'} left drawer</UBtn>
+          <span style={{fontSize:12,color:'var(--mono-400)'}}>← toggle to push content right & reflow</span>
+        </div>
+        {drawer && <SideDrawer onClose={()=>setDrawer(false)} />}
+<Group title="Announcement & utility" count="alerts · offers · system state · quick links"><div className="specs">
+<Spec cap="Utility strip" wide><UtilityStrip /></Spec><Spec cap="Announcement bar" wide><AnnouncementBar /></Spec></div></Group>
+<Group title="Containers" count="grid · panels · drawers · modals"><div className="specs">
+<Spec cap="Grid system"><GridDemo /></Spec><Spec cap="Panel"><Panel /></Spec>
+<Spec cap="Modal"><UBtn variant="ghost" onClick={()=>setModal(true)}>Open modal</UBtn></Spec>
+<Spec cap="Drawer"><UBtn variant="ghost" onClick={()=>setDrawer(true)}>Open drawer</UBtn></Spec></div></Group>
+<Group title="Disclosure" count="accordion · FAQ"><div className="specs"><Spec cap="Accordion / FAQ" wide><Accordion /></Spec></div></Group>
+<Group title="Mobile-specific" count="hamburger · simplified menu · large buttons · low density"><div className="specs">
+<Spec cap="Hamburger nav + drawer + large buttons" wide><div className="phone"><div className="scr"><PhoneApp /></div></div></Spec></div></Group>
+        {sheet && <ActionSheet onClose={()=>setSheet(false)} />}
+        {modal && <Modal onClose={()=>setModal(false)} />}
+       </div>);
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+  <script src="theme-toggle.js"></script>
+</body></html>

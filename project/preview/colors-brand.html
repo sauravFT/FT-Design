@@ -1,0 +1,52 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Brand colors" subtitle="Base brand + blue & magenta tint/shade ramps (50–900)" viewport="700x360" -->
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .ramp{display:flex;margin:6px 0 16px;border:1px solid var(--border)}
+  .ramp .step{flex:1;height:54px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px}
+  .ramp .step span{font:600 9px var(--font-mono);letter-spacing:-.02em}
+  .ramp-lbl{font-size:11px;font-weight:700;color:var(--fg);margin-bottom:2px}
+  .ramp-sub{font-size:10px;color:var(--fg-muted);font-family:var(--font-mono);margin-bottom:4px}
+</style>
+</head><body>
+<div class="eyebrow">Brand · base</div>
+<div class="card-row">
+  <div class="sw"><div class="sw-c" style="background:#352eff"></div><div class="sw-meta"><div class="sw-name">Primary</div><div class="sw-hex">#352EFF</div></div></div>
+  <div class="sw"><div class="sw-c" style="background:#0053ff"></div><div class="sw-meta"><div class="sw-name">Secondary</div><div class="sw-hex">#0053FF</div></div></div>
+  <div class="sw"><div class="sw-c" style="background:#7c9dff"></div><div class="sw-meta"><div class="sw-name">Tertiary-1 · hover</div><div class="sw-hex">#7C9DFF</div></div></div>
+  <div class="sw"><div class="sw-c" style="background:#030192"></div><div class="sw-meta"><div class="sw-name">Tertiary-2 · pressed</div><div class="sw-hex">#030192</div></div></div>
+  <div class="sw"><div class="sw-c" style="background:#ff00ff"></div><div class="sw-meta"><div class="sw-name">Magenta · dark hero</div><div class="sw-hex">#FF00FF</div></div></div>
+</div>
+
+<div class="ramp-lbl">Electric Blue · tints → shades</div>
+<div class="ramp-sub">50 — 100 — 200 — 300 — 400 — 500 (base) — 600 — 700 — 800 — 900</div>
+<div class="ramp">
+  <div class="step" style="background:color-mix(in srgb,#352eff 8%,#fff)"><span style="color:#352eff">50</span></div>
+  <div class="step" style="background:color-mix(in srgb,#352eff 20%,#fff)"><span style="color:#352eff">100</span></div>
+  <div class="step" style="background:color-mix(in srgb,#352eff 38%,#fff)"><span style="color:#1b1670">200</span></div>
+  <div class="step" style="background:color-mix(in srgb,#352eff 60%,#fff)"><span style="color:#fff">300</span></div>
+  <div class="step" style="background:color-mix(in srgb,#352eff 80%,#fff)"><span style="color:#fff">400</span></div>
+  <div class="step" style="background:#352eff"><span style="color:#fff">500</span></div>
+  <div class="step" style="background:color-mix(in srgb,#352eff 82%,#000)"><span style="color:#fff">600</span></div>
+  <div class="step" style="background:color-mix(in srgb,#352eff 64%,#000)"><span style="color:#fff">700</span></div>
+  <div class="step" style="background:color-mix(in srgb,#352eff 46%,#000)"><span style="color:#fff">800</span></div>
+  <div class="step" style="background:color-mix(in srgb,#352eff 30%,#000)"><span style="color:#fff">900</span></div>
+</div>
+
+<div class="ramp-lbl">Magenta · tints → shades</div>
+<div class="ramp-sub">50 — 100 — 200 — 300 — 400 — 500 (base) — 600 — 700 — 800 — 900</div>
+<div class="ramp">
+  <div class="step" style="background:color-mix(in srgb,#ff00ff 8%,#fff)"><span style="color:#ff00ff">50</span></div>
+  <div class="step" style="background:color-mix(in srgb,#ff00ff 20%,#fff)"><span style="color:#ff00ff">100</span></div>
+  <div class="step" style="background:color-mix(in srgb,#ff00ff 38%,#fff)"><span style="color:#a0009f">200</span></div>
+  <div class="step" style="background:color-mix(in srgb,#ff00ff 60%,#fff)"><span style="color:#fff">300</span></div>
+  <div class="step" style="background:color-mix(in srgb,#ff00ff 80%,#fff)"><span style="color:#fff">400</span></div>
+  <div class="step" style="background:#ff00ff"><span style="color:#fff">500</span></div>
+  <div class="step" style="background:color-mix(in srgb,#ff00ff 82%,#000)"><span style="color:#fff">600</span></div>
+  <div class="step" style="background:color-mix(in srgb,#ff00ff 64%,#000)"><span style="color:#fff">700</span></div>
+  <div class="step" style="background:color-mix(in srgb,#ff00ff 46%,#000)"><span style="color:#fff">800</span></div>
+  <div class="step" style="background:color-mix(in srgb,#ff00ff 30%,#000)"><span style="color:#fff">900</span></div>
+</div>
+</body></html>

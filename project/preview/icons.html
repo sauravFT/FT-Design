@@ -1,0 +1,17 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Brand icons" subtitle="77 two-tone line icons extracted from the Fyscal sheet" viewport="700x320" --><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+body{margin:0;background:#fff;font-family:var(--font-body);padding:18px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--mono-400);margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(13,1fr);gap:6px}
+.cell{aspect-ratio:1;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;background:#fff}
+.cell img{width:30px;height:30px}
+</style></head><body>
+<div class="eyebrow">Brand icons · 77 · two-tone line (blue → magenta)</div>
+<div class="grid" id="g"></div>
+<script>
+let h='';for(let i=1;i<=77;i++){const id=String(i).padStart(2,'0');h+=`<div class="cell"><img src="../assets/icons/icon-${id}.svg" alt="icon ${id}"></div>`;}
+document.getElementById('g').innerHTML=h;
+</script>
+</body></html>

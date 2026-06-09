@@ -1,0 +1,31 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Fyscal logo" subtitle="Light, dark, blue, and mixed (white + dark halo)" viewport="700x320" -->
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+.row{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.box{display:flex;align-items:center;justify-content:center;padding:18px 22px;border:1px solid var(--border)}
+.box.dark{background:var(--mono-900);border-color:var(--mono-900)}
+.box.blue{background:var(--primary);border-color:var(--primary)}
+.box.mixed{background:linear-gradient(120deg,#352eff 0%,#7c9dff 38%,#f2f2f2 60%,#171717 100%);position:relative}
+/* Robust legible treatment for mixed/photo backgrounds: the all-white logo with
+   a dual DARK halo. The tight 1px halo defines edges against the light band; the
+   soft wider shadow lifts it off the bright/blue bands. Renders everywhere
+   (no mask/backdrop-filter dependency) and stays clearly visible on any color. */
+.mixed-logo{filter:
+  drop-shadow(0 0 1px rgba(0,0,0,.85))
+  drop-shadow(0 1px 1px rgba(0,0,0,.6))
+  drop-shadow(0 2px 8px rgba(0,0,0,.45));}
+.cap{font-size:10px;color:var(--fg-muted);font-family:var(--font-mono);margin-top:6px}
+.col{display:flex;flex-direction:column;align-items:center}
+</style>
+</head><body>
+<div class="eyebrow">Logo · electric-blue mark + wordmark (zero clear-space violations)</div>
+<div class="row">
+  <div class="col"><div class="box"><img src="../assets/fyscal-logo.svg" height="32" alt="Fyscal"></div><div class="cap">primary · on light</div></div>
+  <div class="col"><div class="box dark"><img src="../assets/fyscal-logo-white.svg" height="32" alt="Fyscal"></div><div class="cap">all-white · on dark</div></div>
+  <div class="col"><div class="box blue"><img src="../assets/fyscal-logo-white.svg" height="32" alt="Fyscal"></div><div class="cap">all-white · on brand blue</div></div>
+  <div class="col"><div class="box mixed"><img class="mixed-logo" src="../assets/fyscal-logo-white.svg" height="32" alt="Fyscal"></div><div class="cap">white + dark halo · legible on any band</div></div>
+</div>
+</body></html>

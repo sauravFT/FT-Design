@@ -1,0 +1,22 @@
+/* Shared base for preview specimen cards (Design System tab) */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  padding: 20px 22px;
+}
+.card-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: stretch; }
+.eyebrow {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--fg-muted); margin-bottom: 12px;
+}
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* swatches */
+.sw { flex: 1; min-width: 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.sw-c { height: 56px; }
+.sw-meta { padding: 7px 9px; }
+.sw-name { font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sw-hex { font-size: 10px; color: var(--fg-muted); font-family: var(--font-mono); margin-top: 1px; }

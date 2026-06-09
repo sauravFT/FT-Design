@@ -1,0 +1,222 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   FYSCAL DECK — slide system v2 (design size 1920×1080)
+   Editorial, zero-radius, grid-driven. Brand tokens from colors_and_type.css.
+   Award-winning-deck principles: big type, generous whitespace, a strict
+   baseline/column grid, restrained palette, one accent (electric blue), mono
+   numerals, hairline rules, and room for icons / illustrations / diagrams.
+   ═══════════════════════════════════════════════════════════════════════════ */
+deck-stage:not(:defined){visibility:hidden}
+deck-stage{background:#06070f}
+
+*{box-sizing:border-box}
+
+.s{
+  font-family:var(--font-body);
+  background:var(--surface);
+  color:var(--fg);
+  overflow:hidden;
+  position:relative;
+  -webkit-font-smoothing:antialiased;
+}
+.pad{box-sizing:border-box;padding:110px 130px;height:100%;display:flex;flex-direction:column}
+.pad.tight{padding:96px 110px}
+.center{justify-content:center}
+
+/* ── NOTHING IS ROUNDED ──────────────────────────────────────────────────── */
+.s *{border-radius:0 !important}
+
+/* ── TYPE SCALE ──────────────────────────────────────────────────────────── */
+.kicker{font-size:23px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--primary)}
+.kicker.mut{color:var(--mono-400)}
+.kicker.on-dark{color:rgba(255,255,255,.75)}
+.eyebrow{display:inline-flex;align-items:center;gap:16px;font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--primary)}
+.eyebrow::before{content:"";width:46px;height:2px;background:currentColor}
+.eyebrow.on-dark{color:rgba(255,255,255,.8)}
+
+.display{font-size:150px;font-weight:600;letter-spacing:-.045em;line-height:.92}
+.h-hero{font-size:124px;font-weight:600;letter-spacing:-.04em;line-height:.96}
+.h1{font-size:88px;font-weight:600;letter-spacing:-.035em;line-height:1.0}
+.h2{font-size:62px;font-weight:600;letter-spacing:-.03em;line-height:1.05}
+.h3{font-size:38px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.lead{font-size:33px;line-height:1.5;color:var(--mono-500);font-weight:400}
+.body{font-size:26px;line-height:1.55;color:var(--mono-500)}
+.small{font-size:24px;line-height:1.5;color:var(--mono-400)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.grad{color:var(--primary)}
+.ital{font-style:italic}
+strong{font-weight:600;color:inherit}
+
+/* ── CHROME: logo, footer, slide index, side rail ────────────────────────── */
+.logo{display:flex;align-items:center;gap:14px}
+.logo img{height:38px;display:block}
+.foot{display:flex;align-items:center;justify-content:space-between;font-size:21px;color:var(--mono-400);letter-spacing:.01em}
+.foot .mono{font-size:19px;letter-spacing:.05em}
+.pageno{position:absolute;top:64px;right:130px;font:600 20px var(--font-mono);color:var(--mono-300);letter-spacing:.1em}
+.tag-tl{position:absolute;top:60px;left:130px;font-size:20px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mono-300)}
+
+/* ── FILLS ───────────────────────────────────────────────────────────────── */
+.blue-fill{background:#352eff;color:#fff}
+.blue-fill .lead,.blue-fill .body{color:rgba(255,255,255,.82)}
+.blue-fill .foot{color:rgba(255,255,255,.7)}
+.ink-fill{background:#0a0b14;color:#fff}
+.ink-fill .lead,.ink-fill .body{color:rgba(255,255,255,.62)}
+.ink-fill .foot{color:rgba(255,255,255,.5)}
+.grad-fill{background:linear-gradient(125deg,#352eff 0%,#1b1fae 55%,#0a0b40 100%);color:#fff}
+.grad-fill .lead{color:rgba(255,255,255,.82)}
+.soft-fill{background:var(--surface-soft)}
+
+/* hairline divider */
+.rule{height:2px;background:var(--border);width:100%}
+.rule.dark{background:rgba(255,255,255,.14)}
+.vrule{width:2px;background:var(--border);align-self:stretch}
+
+/* ── CHIP / TAG ──────────────────────────────────────────────────────────── */
+.chip{display:inline-flex;align-items:center;gap:10px;font-size:21px;font-weight:600;padding:9px 18px;background:var(--primary-soft);color:var(--primary)}
+.chip.out{background:transparent;box-shadow:inset 0 0 0 2px var(--border);color:var(--mono-500)}
+.chip.lite{background:rgba(255,255,255,.16);color:#fff}
+.num-chip{font:700 22px var(--font-mono);color:var(--primary)}
+
+/* ── GRID HELPERS ────────────────────────────────────────────────────────── */
+.row{display:flex;gap:64px}
+.col{flex:1;min-width:0}
+.between{justify-content:space-between}
+.items-center{align-items:center}
+.items-end{align-items:flex-end}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.grid-12{display:grid;grid-template-columns:repeat(12,1fr);gap:32px}
+.mt-auto{margin-top:auto}
+.fill-h{flex:1;min-height:0}
+
+/* ── CARDS (square, hairline) ────────────────────────────────────────────── */
+.card{background:var(--surface);box-shadow:inset 0 0 0 1px var(--border);padding:44px;display:flex;flex-direction:column;gap:18px}
+.card.soft{background:var(--surface-soft);box-shadow:none}
+.card.accent{box-shadow:inset 0 0 0 2px var(--primary)}
+.card.dark{background:#11131f;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);color:#fff}
+.card h4{font-size:31px;font-weight:600;letter-spacing:-.01em}
+.card p{font-size:23px;line-height:1.5;color:var(--mono-500)}
+.card.dark p{color:rgba(255,255,255,.6)}
+.card .topline{height:4px;width:64px;background:var(--primary);margin-bottom:6px}
+
+/* ── ICON FRAME (square, for brand icons) ────────────────────────────────── */
+.icf{width:84px;height:84px;display:grid;place-items:center;background:var(--primary-soft);flex-shrink:0}
+.icf.line{background:transparent;box-shadow:inset 0 0 0 2px var(--primary)}
+.icf.lite{background:rgba(255,255,255,.14)}
+.icf img{width:46px;height:46px;display:block}
+.icf.sm{width:60px;height:60px}.icf.sm img{width:34px;height:34px}
+.icf.lg{width:120px;height:120px}.icf.lg img{width:64px;height:64px}
+
+/* ── METRICS ─────────────────────────────────────────────────────────────── */
+.metric .n{font:600 104px/.95 var(--font-mono);letter-spacing:-.04em;color:var(--primary)}
+.metric .n.ink{color:var(--fg)}
+.metric .l{font-size:25px;color:var(--mono-500);margin-top:14px;line-height:1.35}
+.metric .d{font-size:20px;font-weight:600;color:var(--success);margin-top:8px;font-family:var(--font-mono)}
+
+/* ── NUMBERED / BULLET LISTS ─────────────────────────────────────────────── */
+.bul{display:flex;flex-direction:column;gap:30px}
+.bul li{list-style:none;display:flex;gap:24px;align-items:flex-start;font-size:30px;line-height:1.42}
+.bul .dot{flex-shrink:0;width:40px;height:40px;background:var(--primary);color:#fff;display:grid;place-items:center;font:600 20px var(--font-mono);margin-top:3px}
+.bul .dot.line{background:transparent;box-shadow:inset 0 0 0 2px var(--primary);color:var(--primary)}
+.tick{flex-shrink:0;width:36px;height:36px;display:grid;place-items:center;background:var(--success-soft);margin-top:4px}
+.cross{flex-shrink:0;width:36px;height:36px;display:grid;place-items:center;background:var(--danger-soft);margin-top:4px}
+
+/* ── AGENDA / TOC ────────────────────────────────────────────────────────── */
+.agenda-item{display:flex;align-items:baseline;gap:48px;padding:38px 0;border-bottom:2px solid var(--border)}
+.agenda-item:first-child{border-top:2px solid var(--border)}
+.agenda-item .no{font:600 38px var(--font-mono);color:var(--primary);width:96px}
+.agenda-item .t{font-size:48px;font-weight:600;letter-spacing:-.02em;flex:1}
+.agenda-item .m{font-size:23px;color:var(--mono-400)}
+.agenda-item.done .t{color:var(--mono-300)}
+
+/* ── IMAGE / ILLUSTRATION / DIAGRAM SLOTS ────────────────────────────────── */
+.slot{position:relative;overflow:hidden;background:var(--bg-secondary);display:grid;place-items:center;color:var(--mono-400)}
+.slot.blue{background:linear-gradient(135deg,#352eff,#1b1fae);color:rgba(255,255,255,.7)}
+.slot .ph{display:flex;flex-direction:column;align-items:center;gap:16px;font-size:23px;font-weight:600;letter-spacing:.01em}
+.slot.grid-dots{background-color:var(--surface-soft);background-image:radial-gradient(var(--border) 2px,transparent 2px);background-size:36px 36px}
+
+/* diagram primitives */
+.node{background:var(--surface);box-shadow:inset 0 0 0 2px var(--primary);padding:26px 30px;font-size:26px;font-weight:600;text-align:center;color:var(--fg)}
+.node.soft{box-shadow:inset 0 0 0 2px var(--border);color:var(--mono-600)}
+.node.fill{background:var(--primary);color:#fff;box-shadow:none}
+.conn{flex:1;height:2px;background:var(--primary);position:relative;align-self:center;min-width:40px}
+.conn::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%);border-left:12px solid var(--primary);border-top:8px solid transparent;border-bottom:8px solid transparent}
+
+/* bars (simple chart) */
+.bars{display:flex;align-items:flex-end;gap:22px;height:340px}
+.bars .bar{flex:1;background:var(--primary-soft);position:relative;display:flex;justify-content:center}
+.bars .bar.hi{background:var(--primary)}
+.bars .bar span{position:absolute;top:-44px;font:600 26px var(--font-mono);color:var(--fg)}
+.bars .bar em{position:absolute;bottom:-44px;font-style:normal;font-size:21px;color:var(--mono-400)}
+
+/* quote */
+.quote{font-size:64px;font-weight:600;letter-spacing:-.025em;line-height:1.16}
+.bigmark{font-size:170px;line-height:.5;opacity:.35;font-weight:700}
+
+/* progress / timeline */
+.tl{display:flex;position:relative}
+.tl::before{content:"";position:absolute;top:33px;left:6%;right:6%;height:2px;background:var(--border)}
+.tl .step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px;z-index:1}
+.tl .step .mk{width:68px;height:68px;background:var(--primary);color:#fff;display:grid;place-items:center;font:600 26px var(--font-mono)}
+.tl .step.future .mk{background:var(--surface);box-shadow:inset 0 0 0 2px var(--border);color:var(--mono-400)}
+
+/* two-tone footer brand strip */
+.brandbar{display:flex;align-items:center;gap:20px}
+.brandbar .dotrow{display:flex;gap:7px}
+.brandbar .dotrow i{width:9px;height:9px;background:var(--primary);display:block}
+.brandbar .dotrow i:nth-child(4){background:var(--mono-200)}
+
+/* ── VERY-LIGHT-BLUE TINT (replaces light grey) + MAGENTA ACCENT (2–3%) ──── */
+.soft-fill{background:#f1f3ff}
+.card.soft{background:#f1f3ff}
+.slot{background:#eef1ff}
+.slot.soft-fill{background:#f1f3ff}
+.slot.grid-dots{background-color:#f1f3ff;background-image:radial-gradient(#d4d8ff 2px,transparent 2px)}
+.icf{background:#e8ebff}
+.bul .dot.line{background:transparent}
+/* small magenta marks — appear on every slide via its eyebrow / kicker / page-no / tag */
+.eyebrow::after{content:"";width:13px;height:13px;background:#ff00ff;display:inline-block}
+.kicker::after{content:"";width:12px;height:12px;background:#ff00ff;display:inline-block;margin-left:13px;vertical-align:middle}
+.pageno::before{content:"";width:11px;height:11px;background:#ff00ff;display:inline-block;margin-right:13px;vertical-align:middle}
+.tag-tl::after{content:"";width:11px;height:11px;background:#ff00ff;display:inline-block;margin-left:13px;vertical-align:middle}
+.bigmark{color:#ff00ff;opacity:.55}
+
+/* ── PERSISTENT CORNER LOGO (watermark) ──────────────────────────────────── */
+.wm{position:absolute;top:60px;left:130px;height:30px;width:auto;display:block;z-index:3;opacity:.92}
+.wm.br{top:auto;left:auto;bottom:62px;right:130px}
+
+/* ── BENTO CARDS (asymmetric showcase) ───────────────────────────────────── */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:1fr;gap:28px}
+.bento .b-stat{font:600 80px/.95 var(--font-mono);letter-spacing:-.04em;color:var(--primary)}
+.bento .b-stat.on-dark{color:#fff}
+
+/* ── PRICING TIERS ───────────────────────────────────────────────────────── */
+.tier{background:var(--surface);box-shadow:inset 0 0 0 1px var(--border);padding:48px;display:flex;flex-direction:column;gap:22px}
+.tier.hi{box-shadow:inset 0 0 0 2px var(--primary)}
+.tier .tname{font-size:24px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mono-400)}
+.tier .price{font:600 76px/1 var(--font-mono);letter-spacing:-.03em;color:var(--fg)}
+.tier .price small{font-size:26px;color:var(--mono-400)}
+.tier .tf{display:flex;align-items:center;gap:14px;font-size:24px;color:var(--mono-600)}
+
+/* ── ENTRANCE + TRANSITIONS (gated for print / reduced motion) ───────────── */
+@media (prefers-reduced-motion:no-preference){
+  [data-deck-active] .anim{animation:slup .64s cubic-bezier(.2,.75,.2,1) both}
+  [data-deck-active] .anim:nth-child(2){animation-delay:.07s}
+  [data-deck-active] .anim:nth-child(3){animation-delay:.14s}
+  [data-deck-active] .anim:nth-child(4){animation-delay:.21s}
+  [data-deck-active] .anim:nth-child(5){animation-delay:.28s}
+  [data-deck-active] .anim:nth-child(6){animation-delay:.35s}
+  [data-deck-active] .anim:nth-child(7){animation-delay:.42s}
+  /* cards/tiles/steps stagger gently as a group when their row animates in */
+  [data-deck-active] .anim .card,[data-deck-active] .anim .tier,[data-deck-active] .anim .metric,
+  [data-deck-active] .anim .agenda-item,[data-deck-active] .anim .step{animation:rise .6s cubic-bezier(.2,.75,.2,1) both}
+  [data-deck-active] .anim>*:nth-child(2){animation-delay:.05s}
+  [data-deck-active] .anim>*:nth-child(3){animation-delay:.1s}
+  [data-deck-active] .anim>*:nth-child(4){animation-delay:.15s}
+  [data-deck-active] .anim>*:nth-child(5){animation-delay:.2s}
+  @keyframes slup{from{opacity:0;transform:translateY(34px) scale(.99)}to{opacity:1;transform:none}}
+  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  /* the brand watermark fades in softly on every slide */
+  [data-deck-active] .wm{animation:wmf .9s ease both;animation-delay:.3s}
+  @keyframes wmf{from{opacity:0}to{opacity:.92}}
+}

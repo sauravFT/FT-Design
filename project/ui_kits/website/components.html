@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fyscal — Component Library</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-body); background: var(--surface-soft); color: var(--fg); -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--primary); color: #fff; }
+  @keyframes ftspin { to { transform: rotate(360deg); } }
+  @keyframes ftshimmer { to { background-position: -200% 0; } }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px 80px; }
+  .lib-head { background: var(--ink); color: #fff; padding: 40px 20px; }
+  .lib-head .inner { max-width: 1100px; margin: 0 auto; }
+  .lib-head h1 { font-size: clamp(26px,5vw,38px); font-weight: 600; letter-spacing: -.03em; margin-top: 14px; }
+  .lib-head p { font-size: 15px; color: rgba(255,255,255,.6); margin-top: 8px; max-width: 540px; line-height: 1.6; }
+
+  .grp { margin-top: 44px; }
+  .grp-h { display: flex; align-items: baseline; gap: 10px; padding-bottom: 12px; margin-bottom: 20px; border-bottom: 2px solid var(--mono-900); }
+  .grp-h h2 { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+  .grp-h span { font-size: 12px; color: var(--mono-400); font-family: var(--font-mono); }
+
+  .specs { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 16px; }
+  .spec { background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; }
+  .spec.wide { grid-column: 1 / -1; }
+  .spec .cap { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--mono-400); padding: 11px 16px; border-bottom: 1px solid var(--surface-soft); }
+  .spec .body { padding: 18px 16px; display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+  .spec .body.row { flex-direction: row; flex-wrap: wrap; align-items: center; }
+
+  /* phone frame for mobile-specific group */
+  .phone { width: 300px; margin: 0 auto; border: 10px solid #1c1c1e; border-radius: 38px; overflow: hidden; background: var(--surface); position: relative; height: 560px; }
+  .phone .scr { position: absolute; inset: 0; overflow-y: auto; }
+</style>
+</head>
+<body>
+  <div id="top-strip"></div>
+  <div class="lib-head">
+    <div class="inner" id="head-logo"></div>
+  </div>
+  <div class="wrap" id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="Icons.jsx"></script>
+  <script type="text/babel" src="Nav.jsx"></script>
+  <script type="text/babel" src="Library.jsx"></script>
+  <script type="text/babel" src="LibrarySections.jsx"></script>
+  <script type="text/babel" src="LibraryExtras.jsx"></script>
+  <script type="text/babel" src="LibraryMarketing.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+
+    // mobile phone demo: hamburger → simplified menu, large labeled buttons, low density
+    function PhoneApp() {
+      const [open, setOpen] = useState(false);
+      const links = ['Home','Payments','Cards','Savings','Profile'];
+      return (
+        <div style={{minHeight:'100%',background:'#fff',position:'relative'}}>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'16px 16px 12px',borderBottom:'1px solid var(--border)'}}>
+            <FyscalLogo height={16} />
+            <button onClick={()=>setOpen(o=>!o)} style={{width:40,height:40,display:'grid',placeItems:'center',border:'1px solid var(--border-input)',background:'#fff',cursor:'pointer'}}>
+              {open ? <SIcons.x size={20} stroke="var(--fg)"/> : <SIcons.menu size={20} stroke="var(--fg)"/>}
+            </button>
+          </div>
+          {open && <div style={{borderBottom:'1px solid var(--border)'}}>{links.map((l,i)=><div key={l} style={{padding:'15px 16px',fontSize:16,fontWeight:i===0?600:500,color:i===0?'var(--primary)':'var(--fg)',borderTop:i?'1px solid var(--surface-soft)':'none'}}>{l}</div>)}</div>}
+          <div style={{padding:'22px 16px',display:'flex',flexDirection:'column',gap:18}}>
+            <div>
+              <div style={{fontSize:12,fontWeight:600,letterSpacing:'.06em',textTransform:'uppercase',color:'var(--mono-400)'}}>Balance</div>
+              <div style={{font:'700 30px var(--font-mono)',letterSpacing:'-.02em',marginTop:4}}>₦284,500</div>
+            </div>
+            <UBtn full size="lg"><SIcons.swap size={18} stroke="#fff"/> Send money</UBtn>
+            <UBtn full size="lg" variant="ghost"><SIcons.card size={18}/> Pay a bill</UBtn>
+            <div style={{padding:'4px 0'}}><ListItem title="Salary — GTBank" meta="Today" amount="+₦350,000" credit /><ListItem title="James K." meta="Yesterday" amount="−₦20,000" /></div>
+          </div>
+        </div>
+      );
+    }
+
+    const Spec = ({ cap, wide, row, children }) => (
+      <div className={'spec' + (wide ? ' wide' : '')}>
+        <div className="cap">{cap}</div>
+        <div className={'body' + (row ? ' row' : '')}>{children}</div>
+      </div>
+    );
+    const Group = ({ title, count, children }) => (
+      <section className="grp">
+        <div className="grp-h"><h2>{title}</h2><span>{count}</span></div>
+        {children}
+      </section>
+    );
+
+    function App() {
+      const [sheet, setSheet] = useState(false);
+      const [modal, setModal] = useState(false);
+      const [drawer, setDrawer] = useState(false);
+
+      return (
+        <>
+          <Group title="Navigation" count="menus · breadcrumbs · tabs · segments · side nav">
+            <div className="specs">
+              <Spec cap="Breadcrumbs" wide><Breadcrumbs /></Spec>
+              <Spec cap="Tabs" wide><Tabs /></Spec>
+              <Spec cap="Segmented control"><Segments /></Spec>
+              <Spec cap="Dropdown menu"><Menu /></Spec>
+              <Spec cap="Side navigation"><SideNav /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Content display" count="cards · lists · items · media · avatars · icons · thumbnails">
+            <div className="specs">
+              <Spec cap="Content card"><ContentCard /></Spec>
+              <Spec cap="Feature card"><FeatureCard /></Spec>
+              <Spec cap="List (plain)"><PlainList /></Spec>
+              <Spec cap="Media block"><MediaBlock /></Spec>
+              <Spec cap="List items"><ListItem credit /><ListItem title="Airtime — MTN" meta="Today, 11:45" amount="−₦2,000" /></Spec>
+              <Spec cap="Avatars" row><Avatar /><Avatar initials="OO" tint="#0053ff" /><AvatarGroup /></Spec>
+              <Spec cap="Thumbnails" row><div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8,width:'100%'}}><Thumb/><Thumb tint="var(--success-soft)"/><Thumb tint="var(--warning-soft)"/></div></Spec>
+              <Spec cap="Icons" row>{['bolt','shield','card','chart','globe','api','bell','lock'].map(k=>{const I=SIcons[k];return <span key={k} style={{width:40,height:40,display:'grid',placeItems:'center',background:'var(--surface-soft)'}}><I size={20} stroke="var(--primary)"/></span>;})}</Spec>
+            </div>
+          </Group>
+
+          <Group title="Actions" count="buttons · menus · popovers · action sheets">
+            <div className="specs">
+              <Spec cap="Buttons" row><UBtn>Primary</UBtn><UBtn variant="dark">Dark</UBtn><UBtn variant="ghost">Ghost</UBtn><UBtn variant="danger">Delete</UBtn></Spec>
+              <Spec cap="Button sizes" row><UBtn size="sm">Small</UBtn><UBtn>Medium</UBtn><UBtn size="lg">Large</UBtn></Spec>
+              <Spec cap="Popover"><Popover /></Spec>
+              <Spec cap="Action sheet (mobile)"><UBtn variant="ghost" onClick={()=>setSheet(true)}>Open action sheet</UBtn></Spec>
+            </div>
+          </Group>
+
+          <Group title="Forms" count="inputs · select · radio · checkbox · toggle · range · search">
+            <div className="specs">
+              <Spec cap="Text input"><TextInput /><TextInput label="Account number" placeholder="0123456789" error="Enter a valid 10-digit number" /></Spec>
+              <Spec cap="Select"><Select /></Spec>
+              <Spec cap="Radio group"><Radios /></Spec>
+              <Spec cap="Checkboxes"><Checks /></Spec>
+              <Spec cap="Toggles"><Toggle /><Toggle label="Email receipts" def={false} /></Spec>
+              <Spec cap="Range slider"><RangeSlider /></Spec>
+              <Spec cap="Search bar" wide><SearchBar /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Form sections" count="signup · lead capture · checkout · settings · onboarding">
+            <div className="specs">
+              <Spec cap="Signup"><SignupForm /></Spec>
+              <Spec cap="Lead capture"><LeadCaptureForm /></Spec>
+              <Spec cap="Checkout"><CheckoutForm /></Spec>
+              <Spec cap="Settings"><SettingsForm /></Spec>
+              <Spec cap="Onboarding"><OnboardingForm /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Announcement & utility" count="alerts · offers · system state · quick links">
+            <div className="specs">
+              <Spec cap="Utility strip" wide><UtilityStrip /></Spec>
+              <Spec cap="Announcement bar" wide><AnnouncementBar /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Feedback" count="alerts · badges · toasts · progress · loaders">
+            <div className="specs">
+              <Spec cap="Alerts"><Alert kind="info" /><Alert kind="success" /><Alert kind="danger" /></Spec>
+              <Spec cap="Badges" row><Badge>Primary</Badge><Badge kind="success">Active</Badge><Badge kind="danger">Failed</Badge><Badge kind="warning">Pending</Badge><Badge kind="neutral">Draft</Badge></Spec>
+              <Spec cap="Toast"><Toast /></Spec>
+              <Spec cap="Progress"><Progress /></Spec>
+              <Spec cap="Loaders" row><Spinner /><div style={{flex:1}}><Skeleton /></div></Spec>
+            </div>
+          </Group>
+
+          <Group title="Containers" count="grid · panels · drawers · modals">
+            <div className="specs">
+              <Spec cap="Grid system"><GridDemo /></Spec>
+              <Spec cap="Panel"><Panel /></Spec>
+              <Spec cap="Modal"><UBtn variant="ghost" onClick={()=>setModal(true)}>Open modal</UBtn></Spec>
+              <Spec cap="Drawer"><UBtn variant="ghost" onClick={()=>setDrawer(true)}>Open drawer</UBtn></Spec>
+            </div>
+          </Group>
+
+          <Group title="Data interaction" count="filter · sort · search · reorder · refresh · infinite scroll">
+            <div className="specs">
+              <Spec cap="Filter / sort / refresh" wide><FilterSortBar /></Spec>
+              <Spec cap="Reorder"><Reorder /></Spec>
+              <Spec cap="Infinite scroll"><InfiniteScroll /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Mobile-specific" count="hamburger · simplified menu · large buttons · low density">
+            <div className="specs">
+              <Spec cap="Hamburger nav + drawer + large buttons" wide>
+                <div className="phone"><div className="scr"><PhoneApp /></div></div>
+              </Spec>
+            </div>
+          </Group>
+
+          <Group title="Disclosure" count="accordion · FAQ">
+            <div className="specs">
+              <Spec cap="Accordion / FAQ" wide><Accordion /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Navigation — more" count="pagination · stepper · vertical tabs · toolbar">
+            <div className="specs">
+              <Spec cap="Pagination" wide><Pagination /></Spec>
+              <Spec cap="Stepper / wizard" wide><Stepper /></Spec>
+              <Spec cap="Vertical tabs"><VerticalTabs /></Spec>
+              <Spec cap="Toolbar"><Toolbar /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Forms — more controls" count="textarea · OTP · phone · quantity · file · date · multi-select">
+            <div className="specs">
+              <Spec cap="Textarea"><Textarea /></Spec>
+              <Spec cap="OTP input"><OTP /></Spec>
+              <Spec cap="Phone input"><PhoneInput /></Spec>
+              <Spec cap="Quantity stepper"><Quantity /></Spec>
+              <Spec cap="File upload"><FileUpload /></Spec>
+              <Spec cap="Date field"><DateField /></Spec>
+              <Spec cap="Multi-select / tags"><TagInput /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Data — more" count="table · stat tile · timeline · rating · chips">
+            <div className="specs">
+              <Spec cap="Data table" wide><DataTable /></Spec>
+              <Spec cap="Stat tile"><StatTile /></Spec>
+              <Spec cap="Timeline"><Timeline /></Spec>
+              <Spec cap="Star rating"><Rating /></Spec>
+              <Spec cap="Removable chips"><Chips /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Overlays & status" count="tooltip · empty state · circular progress · dismissible · cookie">
+            <div className="specs">
+              <Spec cap="Tooltip"><Tooltip /></Spec>
+              <Spec cap="Empty state"><EmptyState /></Spec>
+              <Spec cap="Circular progress"><CircularProgress /></Spec>
+              <Spec cap="Dismissible banner" wide><DismissBanner /></Spec>
+              <Spec cap="Cookie consent" wide><CookieConsent /></Spec>
+            </div>
+          </Group>
+
+          <Group title="Page sections" count="announcement · intro · features · search · content · form · related">
+            <div className="specs">
+              <Spec cap="Announcement bar" wide><AnnouncementBar /></Spec>
+              <Spec cap="Above-the-fold intro" wide><div style={{background:'#fff'}}><IntroSection /></div></Spec>
+              <Spec cap="Feature grid" wide><div style={{padding:'0 18px'}}><FeatureGridSection /></div></Spec>
+              <Spec cap="Search + filter" wide><div style={{padding:'0 18px'}}><SearchFilterSection /></div></Spec>
+              <Spec cap="Content / storytelling" wide><div style={{padding:'0 18px'}}><ContentSection /></div></Spec>
+              <Spec cap="Form / signup" wide><div style={{padding:'0 18px'}}><FormSection /></div></Spec>
+              <Spec cap="Related links" wide><div style={{padding:'0 18px'}}><RelatedLinks /></div></Spec>
+            </div>
+          </Group>
+
+          <Group title="Marketing sections" count="pricing · testimonial · stats · FAQ · CTA · newsletter · logos">
+            <div className="specs">
+              <Spec cap="Pricing table" wide><PricingTable /></Spec>
+              <Spec cap="Testimonial" wide><TestimonialBlock /></Spec>
+              <Spec cap="Stats band" wide><StatsBand /></Spec>
+              <Spec cap="FAQ section" wide><FAQSection /></Spec>
+              <Spec cap="CTA banner" wide><CTABanner /></Spec>
+              <Spec cap="Newsletter signup" wide><Newsletter /></Spec>
+              <Spec cap="Logo cloud" wide><LogoCloud /></Spec>
+            </div>
+          </Group>
+
+          {sheet && <ActionSheet onClose={()=>setSheet(false)} />}
+          {modal && <Modal onClose={()=>setModal(false)} />}
+          {drawer && <Drawer onClose={()=>setDrawer(false)} />}
+        </>
+      );
+    }
+
+    // top utility strip + announcement bar (always visible, above the fold)
+    ReactDOM.createRoot(document.getElementById('top-strip')).render(<><UtilityStrip /><AnnouncementBar /></>);
+    // header logo
+    ReactDOM.createRoot(document.getElementById('head-logo')).render(
+      <><FyscalLogo height={22} variant="white" /><h1>Component Library</h1><p>Mobile-first building blocks in the Fyscal system — navigation, content, actions, forms, feedback, containers, data interaction, and full page sections. Zero-radius, FT Sans, electric blue.</p></>
+    );
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+  <script src="theme-toggle.js"></script>
+</body>
+</html>

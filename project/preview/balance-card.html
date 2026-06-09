@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Balance card" subtitle="Signature gradient + glow" viewport="700x250" -->
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+body{background:var(--surface-ios)}
+.bal{background:var(--gradient-brand);border-radius:0;padding:20px;color:#fff;box-shadow:var(--shadow-brand);max-width:330px}
+.l{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.amt{font:700 32px/1 var(--font-mono);letter-spacing:-.02em;margin:7px 0 3px}
+.amt small{font-size:20px;opacity:.7}
+.sub{font-size:11px;opacity:.6;margin-bottom:18px}
+.acts{display:flex;gap:8px}
+.act{flex:1;padding:9px 0;border-radius:0;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);font-size:11px;font-weight:600;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px}
+.act svg{opacity:.95}
+</style>
+</head><body>
+<div class="eyebrow">Balance card · the signature gradient + glow</div>
+<div class="bal">
+  <div class="l">Available balance</div>
+  <div class="amt">₦ 284,500<small>.00</small></div>
+  <div class="sub">Last updated: just now</div>
+  <div class="acts">
+    <div class="act"><svg width="17" height="17" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M3 9h12" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Add</div>
+    <div class="act"><svg width="17" height="17" viewBox="0 0 18 18" fill="none"><path d="M15 9H3M9 3l-6 6 6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Send</div>
+    <div class="act"><svg width="17" height="17" viewBox="0 0 18 18" fill="none"><rect x="2" y="5" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.8"/><path d="M2 9h14" stroke="#fff" stroke-width="1.8"/></svg>Pay</div>
+    <div class="act"><svg width="17" height="17" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="#fff" stroke-width="1.8"/><path d="M9 6v3l2 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>History</div>
+  </div>
+</div>
+</body></html>

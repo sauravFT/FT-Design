@@ -1,0 +1,22 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Corner radii" subtitle="Sharp components (4px), cards step up" viewport="700x160" -->
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+.rad{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px}
+.rad .box{width:100%;height:56px;background:var(--primary-soft);border:1.5px solid var(--primary)}
+.rad .t{font-size:10px;font-weight:600}
+.rad .v{font-size:10px;color:var(--fg-muted);font-family:var(--font-mono)}
+</style>
+</head><body>
+<div class="eyebrow">Corner radii · components are squared (0); only chips/avatars stay round</div>
+<div class="card-row">
+  <div class="rad"><div class="box" style="border-radius:2px"></div><div class="t">xs</div><div class="v">2px</div></div>
+  <div class="rad"><div class="box" style="border-radius:4px"></div><div class="t">sm · buttons/inputs</div><div class="v">4px</div></div>
+  <div class="rad"><div class="box" style="border-radius:0"></div><div class="t">md</div><div class="v">0</div></div>
+  <div class="rad"><div class="box" style="border-radius:0"></div><div class="t">lg · cards</div><div class="v">0</div></div>
+  <div class="rad"><div class="box" style="border-radius:0"></div><div class="t">xl · hero</div><div class="v">0</div></div>
+  <div class="rad"><div class="box" style="border-radius:9999px"></div><div class="t">full · chips</div><div class="v">9999</div></div>
+</div>
+</body></html>

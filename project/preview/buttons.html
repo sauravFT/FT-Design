@@ -1,0 +1,21 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Buttons" subtitle="Primary / secondary / text + states" viewport="700x175" -->
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_card.css">
+<style>
+.btn{height:42px;padding:0 22px;border-radius:0;font:600 14px/1 var(--font-body);border:none;cursor:default;display:inline-flex;align-items:center;justify-content:center}
+.p{background:var(--primary);color:#fff}
+.p-h{background:var(--tertiary-1);color:#fff}
+.p-c{background:var(--tertiary-2);color:#fff}
+.p-d{background:var(--mono-200);color:var(--mono-400)}
+.sec{background:transparent;border:1px solid var(--border-input);color:var(--fg)}
+.txt{background:transparent;color:var(--primary);padding:0 8px}
+.grp{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.cap{font-size:9px;color:var(--fg-muted);font-family:var(--font-mono);width:70px}
+</style>
+</head><body>
+<div class="eyebrow">Buttons · 4px radius, 42–48px height</div>
+<div class="grp"><span class="cap">primary</span><button class="btn p">Continue</button><button class="btn p-h">Hover</button><button class="btn p-c">Pressed</button><button class="btn p-d">Disabled</button></div>
+<div class="grp"><span class="cap">secondary</span><button class="btn sec">Secondary</button><button class="btn txt">Text only</button></div>
+</body></html>
